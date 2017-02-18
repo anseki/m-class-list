@@ -1,0 +1,26 @@
+{
+  "name": "m-class-list",
+  "version": "0.0.1",
+  "description": "%description%",
+  "keywords": [
+    "%keywords%"
+  ],
+  "main": "m-class-list.min.js",
+  "homepage": "https://github.com/anseki/m-class-list",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/anseki/m-class-list.git"
+  },
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "license": "MIT",
+  "authors": [
+    "anseki <AnSeki.aff@gmail.com>"
+  ]
+}

@@ -1,9 +1,16 @@
 {
   "name": "m-class-list",
   "version": "0.0.1",
-  "description": "%description%",
+  "description": "The super simple shim for `classList` of HTML and SVG, that transparently intercepts difference between modern browsers and semi-modern browsers.",
   "keywords": [
-    "%keywords%"
+    "classlist",
+    "HTML",
+    "SVG",
+    "shim",
+    "polyfill",
+    "contains",
+    "toggle",
+    "replace"
   ],
   "main": "m-class-list.min.js",
   "homepage": "https://github.com/anseki/m-class-list",

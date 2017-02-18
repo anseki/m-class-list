@@ -2,9 +2,16 @@
   "name": "m-class-list",
   "version": "0.0.1",
   "title": "mClassList",
-  "description": "%description%",
+  "description": "The super simple shim for `classList` of HTML and SVG, that transparently intercepts difference between modern browsers and semi-modern browsers.",
   "keywords": [
-    "%keywords%"
+    "classlist",
+    "HTML",
+    "SVG",
+    "shim",
+    "polyfill",
+    "contains",
+    "toggle",
+    "replace"
   ],
   "main": "m-class-list.min.js",
   "jsnext:main": "./src/m-class-list.js",
@@ -21,7 +28,8 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "dev": "webpack --display-modules"
+    "dev": "webpack --display-modules",
+    "test": "node ./test/httpd"
   },
   "homepage": "https://github.com/anseki/m-class-list",
   "repository": {

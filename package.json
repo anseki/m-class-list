@@ -1,6 +1,6 @@
 {
   "name": "m-class-list",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "title": "mClassList",
   "description": "The super simple shim for `classList` of HTML and SVG, that transparently intercepts difference between modern browsers and semi-modern browsers.",
   "keywords": [

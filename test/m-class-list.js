@@ -85,70 +85,74 @@ Object.defineProperty(exports, "__esModule", {
  * Licensed under the MIT license.
  */
 
-function addUpdate(list, element, token) {
-  list.push(token);
+function normalize(token) {
+  return (token + '').trim();
+} // Not `||`
+function applyList(list, element) {
   element.setAttribute('class', list.join(' '));
 }
 
-function removeUpdate(list, element, i) {
-  list.splice(i, 1);
-  element.setAttribute('class', list.join(' '));
+function _add(list, element, tokens) {
+  if (tokens.filter(function (token) {
+    if (!(token = normalize(token)) || list.indexOf(token) !== -1) {
+      return false;
+    }
+    list.push(token);
+    return true;
+  }).length) {
+    applyList(list, element);
+  }
 }
 
-function _add(list, element, token) {
-  if (!token || list.indexOf(token) !== -1) {
-    return;
+function _remove(list, element, tokens) {
+  if (tokens.filter(function (token) {
+    var i = void 0;
+    if (!(token = normalize(token)) || (i = list.indexOf(token)) === -1) {
+      return false;
+    }
+    list.splice(i, 1);
+    return true;
+  }).length) {
+    applyList(list, element);
   }
-  addUpdate(list, element, token);
-}
-
-function _remove(list, element, token) {
-  var i = void 0;
-  if (!token || (i = list.indexOf(token)) === -1) {
-    return;
-  }
-  removeUpdate(list, element, i);
 }
 
 function _toggle(list, element, token, force) {
-  var i = list.indexOf(token);
+  var i = list.indexOf(token = normalize(token));
   if (i !== -1) {
     if (force) {
       return true;
     }
-    removeUpdate(list, element, i);
+    list.splice(i, 1);
+    applyList(list, element);
     return false;
   } else {
     if (force === false) {
       return false;
     }
-    addUpdate(list, element, token);
+    list.push(token);
+    applyList(list, element);
     return true;
   }
 }
 
 function _replace(list, element, token, newToken) {
   var i = void 0;
-  if (!token || !newToken || token === newToken || (i = list.indexOf(token)) === -1) {
+  if (!(token = normalize(token)) || !(newToken = normalize(newToken)) || token === newToken || (i = list.indexOf(token)) === -1) {
     return;
   }
   list.splice(i, 1);
   if (list.indexOf(newToken) === -1) {
     list.push(newToken);
   }
-  element.setAttribute('class', list.join(' '));
+  applyList(list, element);
 }
 
 function mClassList(element) {
   return !mClassList.ignoreNative && element.classList || function () {
-
-    function normalize(token) {
-      return (token + '').trim();
-    } // Not `||`
     var list = (element.getAttribute('class') || '').trim().split(/\s+/).filter(function (token) {
       return !!token;
     });
-
     return {
       length: list.length,
       item: function item(i) {
@@ -158,20 +162,16 @@ function mClassList(element) {
         return list.indexOf(normalize(token)) !== -1;
       },
       add: function add() {
-        Array.prototype.slice.call(arguments).forEach(function (token) {
-          return _add(list, element, normalize(token));
-        });
+        _add(list, element, Array.prototype.slice.call(arguments));
       },
       remove: function remove() {
-        Array.prototype.slice.call(arguments).forEach(function (token) {
-          return _remove(list, element, normalize(token));
-        });
+        _remove(list, element, Array.prototype.slice.call(arguments));
       },
       toggle: function toggle(token, force) {
-        return _toggle(list, element, normalize(token), force);
+        return _toggle(list, element, token, force);
       },
       replace: function replace(token, newToken) {
-        return _replace(list, element, normalize(token), normalize(newToken));
+        return _replace(list, element, token, newToken);
       }
     };
   }();

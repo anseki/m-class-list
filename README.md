@@ -35,7 +35,7 @@ For example, replace this code:
 
 ```js
 if (element.classList.contains('foo')) {
-  element.classList.add('bar');
+  element.classList.add('bar', 'baz');
 }
 ```
 
@@ -43,7 +43,7 @@ with:
 
 ```js
 if (mClassList(element).contains('foo')) {
-  mClassList(element).add('bar');
+  mClassList(element).add('bar', 'baz');
 }
 ```
 

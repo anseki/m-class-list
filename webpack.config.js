@@ -2,39 +2,42 @@
 
 'use strict';
 
-const webpack = require('webpack'),
+const
+  BASE_NAME = 'm-class-list',
+  OBJECT_NAME = 'mClassList',
+
+  webpack = require('webpack'),
   path = require('path'),
-  BUILD = process.env.NODE_ENV === 'production',
   PKG = require('./package'),
 
-  BABEL_TARGET_PACKAGES = [
-  ].map(packageName => require.resolve(packageName) // Get package root path
-    .replace(new RegExp(`([\\/\\\\]node_modules[\\/\\\\]${packageName}[\\/\\\\]).*$`), '$1')),
+  BUILD = process.env.NODE_ENV === 'production',
 
-  BABEL_PARAMS = {
-    presets: ['es2015'],
-    plugins: ['add-module-exports']
+  SRC_PATH = path.resolve(__dirname, 'src'),
+  ENTRY_PATH = path.resolve(SRC_PATH, `${BASE_NAME}.js`),
+  BUILD_PATH = BUILD ? __dirname : path.resolve(__dirname, 'test'),
+  BUILD_FILE = `${BASE_NAME}${BUILD ? '.min.js' : '.js'}`,
+
+  BABEL_RULE = {
+    loader: 'babel-loader',
+    options: {
+      presets: ['es2015'],
+      plugins: ['add-module-exports']
+    }
   };
 
 module.exports = {
-  entry: './src/m-class-list.js',
+  entry: ENTRY_PATH,
   output: {
-    path: BUILD ? __dirname : path.join(__dirname, 'test'),
-    filename: BUILD ? 'm-class-list.min.js' : 'm-class-list.js',
-    library: 'mClassList',
+    path: BUILD_PATH,
+    filename: BUILD_FILE,
+    library: OBJECT_NAME,
     libraryTarget: 'var'
   },
-  resolve: {mainFields: ['jsnext:main', 'browser', 'module', 'main']},
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: absPath => !BABEL_TARGET_PACKAGES.find(target => absPath.indexOf(target) === 0) &&
-          absPath.split(path.sep).includes('node_modules'),
-        use: [{
-          loader: 'babel-loader',
-          options: BABEL_PARAMS
-        }]
+        use: [BABEL_RULE]
       }
     ]
   },

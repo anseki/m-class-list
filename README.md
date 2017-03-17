@@ -22,7 +22,7 @@ There are many shims and polyfills for `classList`, and also, almost modern brow
 
 ## Usage
 
-Load only a file `m-class-list.min.js` into your web page.
+Load mClassList into your web page.
 
 ```html
 <script src="m-class-list.min.js"></script>

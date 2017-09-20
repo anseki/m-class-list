@@ -19,6 +19,7 @@ There are many shims and polyfills for `classList`, and also, almost modern brow
 - Support and respect the [standard API specification](https://dom.spec.whatwg.org/#interface-domtokenlist) that contains supporting multiple arguments for methods.
 - Simpler and smaller by using other APIs that are supported by modern browsers.
 - Don't change any `prototype`. ([Polyfills and the evolution of the Web](https://w3ctag.github.io/polyfills/))
+- Additionally support, "Method chaining".
 
 ## Usage
 
@@ -49,8 +50,7 @@ if (mClassList(element).contains('foo')) {
 
 ## Supported APIs
 
-Following methods and properties are supported.  
-For details of each one, see HTML5 document such as [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList).
+Following methods and properties are supported. For details of each one, see HTML5 document such as [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList).
 
 ### `length`
 
@@ -122,5 +122,5 @@ mClassList(element)
   .remove('baz');
 ```
 
-Note that this behavior differs from [Standard DOM specification](https://dom.spec.whatwg.org/#interface-domtokenlist).  
+Note that this behavior differs from the [standard API specification](https://dom.spec.whatwg.org/#interface-domtokenlist).  
 If you want the standard behavior, set `mClassList.methodChain = false` to make the methods return a `void`.

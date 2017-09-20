@@ -49,37 +49,78 @@ if (mClassList(element).contains('foo')) {
 
 ## Supported APIs
 
+Following methods and properties are supported.  
+For details of each one, see HTML5 document such as [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList).
+
+### `length`
+
 ```js
 number = mClassList(element).length
 ```
+
+### `item`
 
 ```js
 token = mClassList(element).item(index)
 ```
 
-```js
-mClassList(element).add(token1[, token2, token3...])
-```
+### `add`
 
 ```js
-mClassList(element).remove(token1[, token2, token3...])
+classList = mClassList(element).add(token1[, token2, token3...])
 ```
+
+(See [`mClassList.methodChain`](#mclasslistmethodchain) for the return value.)
+
+### `remove`
+
+```js
+classList = mClassList(element).remove(token1[, token2, token3...])
+```
+
+(See [`mClassList.methodChain`](#mclasslistmethodchain) for the return value.)
+
+### `contains`
 
 ```js
 boolean = mClassList(element).contains(token)
 ```
 
+### `toggle`
+
 ```js
 boolean = mClassList(element).toggle(token[, force])
 ```
 
+### `replace`
+
 ```js
-mClassList(element).replace(token, newToken)
+classList = mClassList(element).replace(token, newToken)
 ```
 
-For details, see HTML5 document such as [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList).
+(See [`mClassList.methodChain`](#mclasslistmethodchain) for the return value.)
 
 ## `mClassList.ignoreNative`
 
 By default, `mClassList(element)` returns a native `classList` if `element` has it.  
 You can set `mClassList.ignoreNative = true` to use shim always. For example, this is used for browsers that don't support multiple arguments for methods even though the `element` has `classList`.
+
+## `mClassList.methodChain`
+
+By default, following methods return the `classList` instance itself.
+
+- [`add`](#add)
+- [`remove`](#remove)
+- [`replace`](#replace)
+
+Therefore you can use "Method chaining".  
+For example:
+
+```js
+mClassList(element)
+  .add('foo', 'bar')
+  .remove('baz');
+```
+
+Note that this behavior differs from [Standard DOM specification](https://dom.spec.whatwg.org/#interface-domtokenlist).  
+If you want the standard behavior, set `mClassList.methodChain = false` to make the methods return a `void`.

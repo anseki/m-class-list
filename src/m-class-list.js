@@ -56,17 +56,28 @@ function replace(list, element, token, newToken) {
 
 function mClassList(element) {
   return !mClassList.ignoreNative && element.classList || (() => {
-    const list = (element.getAttribute('class') || '').trim().split(/\s+/).filter(token => !!token);
-    return {
-      length: list.length,
-      item: i => list[i],
-      contains: token => list.indexOf(normalize(token)) !== -1,
-      add: function() { add(list, element, Array.prototype.slice.call(arguments)); },
-      remove: function() { remove(list, element, Array.prototype.slice.call(arguments)); },
-      toggle: (token, force) => toggle(list, element, token, force),
-      replace: (token, newToken) => replace(list, element, token, newToken)
-    };
+    const list = (element.getAttribute('class') || '').trim().split(/\s+/).filter(token => !!token),
+      ins = {
+        length: list.length,
+        item: i => list[i],
+        contains: token => list.indexOf(normalize(token)) !== -1,
+        add: function() {
+          add(list, element, Array.prototype.slice.call(arguments));
+          return mClassList.methodChain ? ins : void 0;
+        },
+        remove: function() {
+          remove(list, element, Array.prototype.slice.call(arguments));
+          return mClassList.methodChain ? ins : void 0;
+        },
+        toggle: (token, force) => toggle(list, element, token, force),
+        replace: (token, newToken) => {
+          replace(list, element, token, newToken);
+          return mClassList.methodChain ? ins : void 0;
+        }
+      };
+    return ins;
   })();
 }
+mClassList.methodChain = true;
 
 export default mClassList;

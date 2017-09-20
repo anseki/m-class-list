@@ -685,4 +685,73 @@ describe('mClassList', function() {
 
   });
 
+  describe('.methodChain', function() {
+
+    it('should be true by default', function(done) {
+      expect(mClassList.methodChain).toBe(true);
+      done();
+    });
+
+    it('.add', function(done) {
+      mClassList.ignoreNative = true;
+      mClassList.methodChain = true;
+      expect(mClassList.methodChain).toBe(true);
+
+      div.className = 'xxx';
+      var ins = mClassList(div),
+        returnValue = ins.add('c1');
+      expect(div.className).toBe('xxx c1');
+      expect(returnValue).toBe(ins);
+
+      mClassList.methodChain = false;
+      expect(mClassList.methodChain).toBe(false);
+      returnValue = ins.add('c2');
+      expect(div.className).toBe('xxx c1 c2');
+      expect(returnValue).toBeUndefined();
+
+      done();
+    });
+
+    it('.remove', function(done) {
+      mClassList.ignoreNative = true;
+      mClassList.methodChain = true;
+      expect(mClassList.methodChain).toBe(true);
+
+      div.className = 'xxx c1 c2';
+      var ins = mClassList(div),
+        returnValue = ins.remove('c1');
+      expect(div.className).toBe('xxx c2');
+      expect(returnValue).toBe(ins);
+
+      mClassList.methodChain = false;
+      expect(mClassList.methodChain).toBe(false);
+      returnValue = ins.remove('c2');
+      expect(div.className).toBe('xxx');
+      expect(returnValue).toBeUndefined();
+
+      done();
+    });
+
+    it('.replace', function(done) {
+      mClassList.ignoreNative = true;
+      mClassList.methodChain = true;
+      expect(mClassList.methodChain).toBe(true);
+
+      div.className = 'xxx c1 c2';
+      var ins = mClassList(div),
+        returnValue = ins.replace('c1', 'c1x');
+      expect(div.className).toBe('xxx c2 c1x');
+      expect(returnValue).toBe(ins);
+
+      mClassList.methodChain = false;
+      expect(mClassList.methodChain).toBe(false);
+      returnValue = ins.replace('c2', 'c2x');
+      expect(div.className).toBe('xxx c1x c2x');
+      expect(returnValue).toBeUndefined();
+
+      done();
+    });
+
+  });
+
 });

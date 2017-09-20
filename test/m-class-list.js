@@ -149,8 +149,8 @@ function mClassList(element) {
   return !mClassList.ignoreNative && element.classList || function () {
     var list = (element.getAttribute('class') || '').trim().split(/\s+/).filter(function (token) {
       return !!token;
-    });
-    return {
+    }),
+        ins = {
       length: list.length,
       item: function item(i) {
         return list[i];
@@ -160,19 +160,24 @@ function mClassList(element) {
       },
       add: function add() {
         _add(list, element, Array.prototype.slice.call(arguments));
+        return mClassList.methodChain ? ins : void 0;
       },
       remove: function remove() {
         _remove(list, element, Array.prototype.slice.call(arguments));
+        return mClassList.methodChain ? ins : void 0;
       },
       toggle: function toggle(token, force) {
         return _toggle(list, element, token, force);
       },
       replace: function replace(token, newToken) {
-        return _replace(list, element, token, newToken);
+        _replace(list, element, token, newToken);
+        return mClassList.methodChain ? ins : void 0;
       }
     };
+    return ins;
   }();
 }
+mClassList.methodChain = true;
 
 exports.default = mClassList;
 module.exports = exports['default'];

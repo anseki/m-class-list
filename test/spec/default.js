@@ -2,10 +2,11 @@
 describe('mClassList', function() {
   'use strict';
 
-  var div, rect;
+  var div, div2, rect;
 
   beforeAll(function(done) {
     div = document.body.appendChild(document.createElement('div'));
+    div2 = document.body.appendChild(document.createElement('div'));
     var SVG_NS = 'http://www.w3.org/2000/svg';
     rect = document.body.appendChild(document.createElementNS(SVG_NS, 'svg'))
       .appendChild(document.createElementNS(SVG_NS, 'rect'));
@@ -748,6 +749,69 @@ describe('mClassList', function() {
       returnValue = ins.replace('c2', 'c2x');
       expect(div.className).toBe('xxx c1x c2x');
       expect(returnValue).toBeUndefined();
+
+      done();
+    });
+
+  });
+
+  describe('hookApply', function() {
+    var callList, callElement;
+
+    it('is called when class property is changed', function(done) {
+      mClassList.ignoreNative = true;
+
+      mClassList.hookApply(function(list, element) {
+        callList = list;
+        callElement = element;
+      });
+
+      div.className = '';
+
+      callList = callElement = null;
+      mClassList(div).add('c1');
+      expect(callList).toEqual(['c1']);
+      expect(callElement).toBe(div);
+
+      callList = callElement = null;
+      mClassList(div).add('c2');
+      expect(callList).toEqual(['c1', 'c2']);
+      expect(callElement).toBe(div);
+
+      callList = callElement = null;
+      mClassList(div).add('c2');
+      expect(callList == null).toBe(true);
+      expect(callElement == null).toBe(true);
+
+      callList = callElement = null;
+      mClassList(div2).add('c2');
+      expect(callList).toEqual(['c2']);
+      expect(callElement).toBe(div2);
+
+      callList = callElement = null;
+      mClassList(div2).remove('c2');
+      expect(callList).toEqual([]);
+      expect(callElement).toBe(div2);
+
+      done();
+    });
+
+    it('can be removed', function(done) {
+      mClassList.ignoreNative = true;
+
+      mClassList.hookApply();
+
+      div.className = '';
+
+      callList = callElement = null;
+      mClassList(div).add('c1');
+      expect(callList == null).toBe(true);
+      expect(callElement == null).toBe(true);
+
+      callList = callElement = null;
+      mClassList(div2).add('c2');
+      expect(callList == null).toBe(true);
+      expect(callElement == null).toBe(true);
 
       done();
     });

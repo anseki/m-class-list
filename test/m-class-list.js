@@ -82,10 +82,15 @@ Object.defineProperty(exports, "__esModule", {
  * Licensed under the MIT license.
  */
 
+var hookApply = void 0; // [DEBUG/]
+
 function normalize(token) {
   return (token + '').trim();
 } // Not `||`
 function applyList(list, element) {
+  if (hookApply) {
+    hookApply(list, element);
+  } // [DEBUG/]
   element.setAttribute('class', list.join(' '));
 }
 
@@ -177,7 +182,12 @@ function mClassList(element) {
     return ins;
   }();
 }
+
 mClassList.methodChain = true;
+
+mClassList.hookApply = function (fnc) {
+  hookApply = typeof fnc === 'function' ? fnc : null;
+}; // [DEBUG/]
 
 exports.default = mClassList;
 module.exports = exports['default'];

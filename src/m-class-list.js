@@ -6,8 +6,13 @@
  * Licensed under the MIT license.
  */
 
+let hookApply; // [DEBUG/]
+
 function normalize(token) { return (token + '').trim(); } // Not `||`
-function applyList(list, element) { element.setAttribute('class', list.join(' ')); }
+function applyList(list, element) {
+  if (hookApply) { hookApply(list, element); } // [DEBUG/]
+  element.setAttribute('class', list.join(' '));
+}
 
 function add(list, element, tokens) {
   if (tokens.filter(token => {
@@ -78,6 +83,9 @@ function mClassList(element) {
     return ins;
   })();
 }
+
 mClassList.methodChain = true;
+
+mClassList.hookApply = (fnc) => { hookApply = typeof fnc === 'function' ? fnc : null; }; // [DEBUG/]
 
 export default mClassList;

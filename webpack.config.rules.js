@@ -4,6 +4,7 @@
 
 const
   SRC_PATH = require('path').resolve(__dirname, 'src'),
+  BUILD = process.env.NODE_ENV === 'production',
   BABEL_RULE = {
     loader: 'babel-loader',
     options: {
@@ -15,6 +16,12 @@ const
 module.exports = [
   {
     resource: {and: [SRC_PATH, /\.js$/]},
-    use: [BABEL_RULE]
+    use: [
+      BABEL_RULE,
+      BUILD ? {
+        loader: 'pre-proc-loader',
+        options: {removeTag: {tag: 'DEBUG'}}
+      } : null
+    ].filter(loader => !!loader)
   }
 ];

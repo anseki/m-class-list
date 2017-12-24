@@ -10,11 +10,8 @@
  * Licensed under the MIT license.
  */
 
-
 function normalize(token) { return (token + '').trim(); } // Not `||`
-function applyList(list, element) {
-  element.setAttribute('class', list.join(' '));
-}
+function applyList(list, element) { element.setAttribute('class', list.join(' ')); }
 
 function add(list, element, tokens) {
   if (tokens.filter(token => {
@@ -87,6 +84,5 @@ function mClassList(element) {
 }
 
 mClassList.methodChain = true;
-
 
 export default mClassList;

@@ -14,6 +14,7 @@
     "replace"
   ],
   "main": "m-class-list.min.js",
+  "module": "./src/m-class-list.js",
   "jsnext:main": "./src/m-class-list.js",
   "devDependencies": {
     "babel-core": "^6.25.0",

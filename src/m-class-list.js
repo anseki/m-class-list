@@ -2,7 +2,7 @@
  * mClassList
  * https://github.com/anseki/m-class-list
  *
- * Copyright (c) 2017 anseki
+ * Copyright (c) 2018 anseki
  * Licensed under the MIT license.
  */
 

@@ -16,6 +16,14 @@
   "main": "m-class-list.min.js",
   "module": "./src/m-class-list.js",
   "jsnext:main": "./src/m-class-list.js",
+  "files": [
+    "m-class-list.min.js",
+    "src/*.js",
+    "!src/*.proc.*",
+    "webpack.config.rules.js",
+    "bower.json",
+    "LICENSE-MIT"
+  ],
   "devDependencies": {
     "babel-core": "^6.25.0",
     "babel-loader": "^7.1.1",

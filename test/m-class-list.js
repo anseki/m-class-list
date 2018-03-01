@@ -66,14 +66,10 @@ var mClassList =
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /*
  * mClassList
  * https://github.com/anseki/m-class-list
@@ -180,9 +176,8 @@ function mClassList(element) {
 
 mClassList.methodChain = true;
 
-exports.default = mClassList;
-module.exports = exports['default'];
+/* harmony default export */ __webpack_exports__["default"] = (mClassList);
 
 /***/ })
-/******/ ]);
+/******/ ])["default"];
 //# sourceMappingURL=m-class-list.js.map

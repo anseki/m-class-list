@@ -14,20 +14,16 @@
     "replace"
   ],
   "main": "m-class-list.min.js",
-  "module": "./src/m-class-list.js",
-  "jsnext:main": "./src/m-class-list.js",
+  "module": "m-class-list.esm.js",
+  "jsnext:main": "m-class-list.esm.js",
   "files": [
-    "m-class-list.min.js",
-    "src/*.js",
-    "!src/*.proc.*",
-    "webpack.config.rules.js",
+    "m-class-list?(-debug).@(min|esm).js",
     "bower.json",
     "LICENSE-MIT"
   ],
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
-    "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-es2015": "^6.24.1",
     "cross-env": "^5.1.3",
     "jasmine-core": "^2.99.1",
@@ -39,8 +35,8 @@
     "webpack": "^3.11.0"
   },
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack",
-    "dev": "webpack --display-modules",
+    "build": "cross-env NODE_ENV=production webpack --verbose",
+    "dev": "webpack --verbose",
     "test": "node ./test/httpd"
   },
   "homepage": "https://github.com/anseki/m-class-list",

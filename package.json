@@ -18,8 +18,7 @@
   "jsnext:main": "m-class-list.esm.js",
   "files": [
     "m-class-list?(-debug).@(min|esm).js",
-    "bower.json",
-    "LICENSE-MIT"
+    "bower.json"
   ],
   "devDependencies": {
     "babel-core": "^6.26.0",

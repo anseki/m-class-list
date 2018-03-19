@@ -45,6 +45,11 @@ var mClassList =
 /******/ 		}
 /******/ 	};
 /******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
 /******/ 	__webpack_require__.n = function(module) {
 /******/ 		var getter = module && module.__esModule ?
@@ -60,16 +65,22 @@ var mClassList =
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/m-class-list.js");
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
+/******/ ({
+
+/***/ "./src/m-class-list.js":
+/*!*****************************!*\
+  !*** ./src/m-class-list.js ***!
+  \*****************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+__webpack_require__.r(__webpack_exports__);
 /*
  * mClassList
  * https://github.com/anseki/m-class-list
@@ -179,5 +190,6 @@ mClassList.methodChain = true;
 /* harmony default export */ __webpack_exports__["default"] = (mClassList);
 
 /***/ })
-/******/ ])["default"];
+
+/******/ })["default"];
 //# sourceMappingURL=m-class-list.js.map

@@ -14,10 +14,10 @@
     "replace"
   ],
   "main": "m-class-list.min.js",
-  "module": "m-class-list.esm.js",
-  "jsnext:main": "m-class-list.esm.js",
+  "module": "m-class-list.mjs",
+  "jsnext:main": "m-class-list.mjs",
   "files": [
-    "m-class-list?(-debug).@(min|esm).js",
+    "m-class-list?(-debug).@(min.js|mjs)",
     "bower.json"
   ],
   "devDependencies": {
@@ -31,7 +31,8 @@
     "pre-proc": "^0.2.8",
     "pre-proc-loader": "^1.0.9",
     "skeleton-loader": "^1.1.5",
-    "webpack": "^4.1.1"
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12"
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack --verbose",

@@ -14,10 +14,10 @@
     "replace"
   ],
   "main": "m-class-list.min.js",
-  "module": "m-class-list.mjs",
-  "jsnext:main": "m-class-list.mjs",
+  "module": "m-class-list.esm.js",
+  "jsnext:main": "m-class-list.esm.js",
   "files": [
-    "m-class-list?(-debug).@(min.js|mjs)",
+    "m-class-list?(-debug).@(min.js|esm.js)",
     "bower.json"
   ],
   "devDependencies": {

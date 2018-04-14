@@ -130,14 +130,13 @@ function _toggle(list, element, token, force) {
     list.splice(i, 1);
     applyList(list, element);
     return false;
-  } else {
-    if (force === false) {
-      return false;
-    }
-    list.push(token);
-    applyList(list, element);
-    return true;
   }
+  if (force === false) {
+    return false;
+  }
+  list.push(token);
+  applyList(list, element);
+  return true;
 }
 
 function _replace(list, element, token, newToken) {
@@ -173,6 +172,7 @@ function mClassList(element) {
         _remove(list, element, Array.prototype.slice.call(arguments));
         return mClassList.methodChain ? ins : void 0;
       },
+
       toggle: function toggle(token, force) {
         return _toggle(list, element, token, force);
       },

@@ -1,4 +1,8 @@
 {
   "env": {"browser": true, "jasmine": true},
-  "globals": {"mClassList": false}
+  "globals": {"mClassList": false},
+  "rules": {
+    "no-var": "off",
+    "prefer-arrow-callback": "off"
+  }
 }

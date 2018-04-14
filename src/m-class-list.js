@@ -37,12 +37,11 @@ function toggle(list, element, token, force) {
     list.splice(i, 1);
     applyList(list, element);
     return false;
-  } else {
-    if (force === false) { return false; }
-    list.push(token);
-    applyList(list, element);
-    return true;
   }
+  if (force === false) { return false; }
+  list.push(token);
+  applyList(list, element);
+  return true;
 }
 
 function replace(list, element, token, newToken) {
@@ -61,11 +60,11 @@ function mClassList(element) {
         length: list.length,
         item: i => list[i],
         contains: token => list.indexOf(normalize(token)) !== -1,
-        add: function() {
+        add() {
           add(list, element, Array.prototype.slice.call(arguments));
           return mClassList.methodChain ? ins : void 0;
         },
-        remove: function() {
+        remove() {
           remove(list, element, Array.prototype.slice.call(arguments));
           return mClassList.methodChain ? ins : void 0;
         },

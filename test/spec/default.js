@@ -1,12 +1,10 @@
-
 describe('mClassList', function() {
   'use strict';
 
-  var div, div2, rect;
+  var div, rect;
 
   beforeAll(function(done) {
     div = document.body.appendChild(document.createElement('div'));
-    div2 = document.body.appendChild(document.createElement('div'));
     var SVG_NS = 'http://www.w3.org/2000/svg';
     rect = document.body.appendChild(document.createElementNS(SVG_NS, 'svg'))
       .appendChild(document.createElementNS(SVG_NS, 'rect'));

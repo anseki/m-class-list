@@ -1,0 +1,3 @@
+*.min.js
+*.esm.js
+test/m-class-list.js

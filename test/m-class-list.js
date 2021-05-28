@@ -100,7 +100,7 @@ __webpack_require__.r(__webpack_exports__);
  * mClassList
  * https://github.com/anseki/m-class-list
  *
- * Copyright (c) 2018 anseki
+ * Copyright (c) 2021 anseki
  * Licensed under the MIT license.
  */
 function normalize(token) {
